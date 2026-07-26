@@ -172,9 +172,26 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .card--wide{grid-column:1/-1}
 .card--half{grid-column:span 6}
 .card--half .card__media{aspect-ratio:16/9}
-/* 아이패드 비율, 가운데 정렬 */
-.card--pad{grid-column:4/10}
+/* 아이패드 비율, 가운데 정렬 (half 카드 대비 1.25배) */
+.card--pad{grid-column:1/-1;width:100%;max-width:62.5%;margin-inline:auto}
 .card--pad .card__media{aspect-ratio:4/3}
+
+/* 토키랜드 — 호버 시 단어 일러스트가 팡 터지는 인터랙션 */
+.toki-pops{position:absolute;inset:0;pointer-events:none;z-index:3}
+.toki-pop{
+  position:absolute;left:var(--l);top:var(--t);
+  width:var(--w,60px);height:auto;
+  transform:translate(-50%,-50%) scale(.15);
+  opacity:0;
+  filter:drop-shadow(0 10px 20px rgba(20,20,15,.18));
+  transition:transform .55s cubic-bezier(.34,1.56,.64,1),opacity .28s ease;
+  transition-delay:var(--d,0ms);
+}
+.card--pad:hover .toki-pop,
+.card--pad.is-popped .toki-pop{
+  transform:translate(-50%,-50%) scale(1) rotate(var(--r,0deg));
+  opacity:1;
+}
 .card__media{
   position:relative;overflow:hidden;border-radius:var(--radius);
   aspect-ratio:4/3;background:var(--accent-soft);
@@ -396,8 +413,11 @@ body.modal-open{overflow:hidden}
 @media (max-width:720px){
   .work__grid{grid-template-columns:1fr}
   .card,.card--half,.card--pad{grid-column:1/-1}
+  .card--pad{max-width:100%}
   .card--half .card__media{aspect-ratio:16/9}
   .card--pad .card__media{aspect-ratio:4/3}
+  /* 좁은 화면에서는 팝이 화면 밖으로 나가므로 안쪽으로 당기고 축소 */
+  .toki-pop{width:calc(var(--w,60px) * .62)}
   .tools__cols{grid-template-columns:1fr}
   .br-desktop{display:none}
   .hero__hint{display:none}

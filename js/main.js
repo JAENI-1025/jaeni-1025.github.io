@@ -151,6 +151,19 @@
     }
   });
 
+  /* ───── 토키랜드 팝: 터치 기기에서는 화면에 들어오면 터뜨림 ───── */
+  const padCard = document.querySelector('.card--pad');
+  if (padCard && !finePointer) {
+    const popIO = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        en.target.classList.add('is-popped');
+        popIO.unobserve(en.target);
+      });
+    }, { threshold: 0.4 });
+    popIO.observe(padCard);
+  }
+
   /* ───── 타임라인 선 드로잉 ───── */
   const timeline = document.querySelector('.timeline');
   if (timeline && !reduced) {
