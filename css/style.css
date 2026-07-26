@@ -249,14 +249,15 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .pgal__item.is-center{transform:rotate(0) scale(1.03)}
 .pgal__item[data-modal]{cursor:pointer}
 .pgal__caption{
-  text-align:center;display:flex;flex-direction:column;gap:4px;
+  text-align:center;display:flex;flex-direction:column;gap:6px;
   padding:0 var(--pad);
+  margin-top:clamp(36px,6vh,72px);
 }
 .pgal__caption strong{font-weight:700;font-size:clamp(16px,2.2vw,21px)}
 .pgal__caption span{font-size:13px;color:var(--gray)}
 .pgal__hint{
   text-align:center;font-size:11.5px;color:var(--gray);
-  margin-top:14px;
+  margin-top:18px;
 }
 
 /* ═══════════ JOURNEY ═══════════ */
