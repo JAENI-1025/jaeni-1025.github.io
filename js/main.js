@@ -189,6 +189,64 @@
   modal.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeModal(); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 
+  /* ───── 포스터 갤러리: 드래그 스크롤 + 중앙 캡션 ───── */
+  const pgal = document.getElementById('pgal');
+  if (pgal) {
+    const items = [...pgal.querySelectorAll('.pgal__item')];
+    const capTitle = document.getElementById('pgalTitle');
+    const capCat = document.getElementById('pgalCat');
+    let centerRaf = null;
+
+    function updateCenter() {
+      centerRaf = null;
+      const mid = pgal.scrollLeft + pgal.clientWidth / 2;
+      let best = null, bestDist = Infinity;
+      for (const it of items) {
+        const c = it.offsetLeft + it.offsetWidth / 2;
+        const d = Math.abs(c - mid);
+        if (d < bestDist) { bestDist = d; best = it; }
+      }
+      if (!best || best.classList.contains('is-center')) return;
+      items.forEach(it => it.classList.toggle('is-center', it === best));
+      capTitle.textContent = best.dataset.title;
+      capCat.textContent = best.dataset.cat;
+    }
+    let centerTimer = null;
+    function queueCenter() {
+      if (centerRaf === null) centerRaf = requestAnimationFrame(updateCenter);
+      // rAF가 지연되는 환경 대비 폴백
+      clearTimeout(centerTimer);
+      centerTimer = setTimeout(updateCenter, 150);
+    }
+    pgal.addEventListener('scroll', queueCenter, { passive: true });
+    addEventListener('resize', queueCenter);
+    addEventListener('load', queueCenter);
+    updateCenter();
+
+    // 드래그로 넘기기
+    let dragging = false, dragMoved = false, startX = 0, startLeft = 0;
+    pgal.addEventListener('pointerdown', e => {
+      dragging = true; dragMoved = false;
+      startX = e.clientX; startLeft = pgal.scrollLeft;
+      pgal.classList.add('is-drag');
+    });
+    addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 5) dragMoved = true;
+      pgal.scrollLeft = startLeft - dx;
+    });
+    addEventListener('pointerup', () => {
+      if (dragging) { dragging = false; pgal.classList.remove('is-drag'); }
+    });
+
+    // 클릭(드래그가 아닐 때만) → 해당 프로젝트 모달
+    items.forEach(it => it.addEventListener('click', () => {
+      if (dragMoved || !it.dataset.modal) return;
+      openModal(it.dataset.modal);
+    }));
+  }
+
   /* ───── 이메일 복사 ───── */
   const emailBtn = document.getElementById('emailBtn');
   if (emailBtn) {

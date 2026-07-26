@@ -164,10 +164,12 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 /* ═══════════ WORK ═══════════ */
 .work__grid{
   display:grid;gap:clamp(20px,3vw,36px);
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(6,1fr);
 }
-.card{position:relative}
+.card{position:relative;grid-column:span 3}
 .card--wide{grid-column:1/-1}
+.card--third{grid-column:span 2}
+.card--third .card__media{aspect-ratio:4/5}
 .card__media{
   position:relative;overflow:hidden;border-radius:var(--radius);
   aspect-ratio:4/3;background:var(--accent-soft);
@@ -213,6 +215,48 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .dummy-toki__tag{
   position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);
   font-size:11px;color:var(--gray);white-space:nowrap;
+}
+
+/* ═══════════ POSTERS (가로 드래그 갤러리) ═══════════ */
+.posters{padding-left:0;padding-right:0}
+.section-title--pad{margin-left:var(--pad);margin-right:var(--pad)}
+.pgal{
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;
+  cursor:grab;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.pgal::-webkit-scrollbar{display:none}
+.pgal.is-drag{cursor:grabbing;scroll-snap-type:none}
+.pgal__track{
+  display:flex;align-items:center;
+  gap:clamp(32px,5vw,80px);
+  padding:44px calc(50vw - 140px) 56px;
+  width:max-content;
+}
+.pgal__item{
+  flex:none;margin:0;scroll-snap-align:center;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+  transform:rotate(-2.2deg);
+}
+.pgal__item:nth-child(even){transform:rotate(2deg) translateY(12px)}
+.pgal__item img{
+  height:clamp(300px,54vh,480px);width:auto;max-width:none;
+  border-radius:4px;
+  box-shadow:0 22px 60px rgba(20,20,15,.20);
+  user-select:none;-webkit-user-drag:none;pointer-events:none;
+}
+.pgal__item.is-center{transform:rotate(0) scale(1.03)}
+.pgal__item[data-modal]{cursor:pointer}
+.pgal__caption{
+  text-align:center;display:flex;flex-direction:column;gap:4px;
+  padding:0 var(--pad);
+}
+.pgal__caption strong{font-weight:700;font-size:clamp(16px,2.2vw,21px)}
+.pgal__caption span{font-size:13px;color:var(--gray)}
+.pgal__hint{
+  text-align:center;font-size:11.5px;color:var(--gray);
+  margin-top:14px;
 }
 
 /* ═══════════ JOURNEY ═══════════ */
@@ -325,9 +369,13 @@ body.modal-open{overflow:hidden}
 /* ═══════════ 반응형 ═══════════ */
 @media (max-width:720px){
   .work__grid{grid-template-columns:1fr}
+  .card,.card--third{grid-column:1/-1}
+  .card--third .card__media{aspect-ratio:4/3}
   .tools__cols{grid-template-columns:1fr}
   .br-desktop{display:none}
   .hero__hint{display:none}
+  .pgal__track{padding:32px calc(50vw - 110px) 40px}
+  .pgal__item img{height:min(46vh,380px)}
 }
 
 /* ═══════════ 모션 최소화 ═══════════ */
