@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeong Jaeyoun — AI를 다루는 디자이너</title>
+<meta name="description" content="편집·영상·모션·일러스트를 아우르는 시각 디자이너 정재윤. AI로 디자인 프로세스의 한계를 넓힙니다.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%232F45FF'/></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 커스텀 커서 -->
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="nav__logo" href="#top" data-hover>JJ<span class="nav__logo-dot">.</span></a>
+  <nav class="nav__menu">
+    <a href="#work" data-hover>WORK</a>
+    <a href="#journey" data-hover>JOURNEY</a>
+    <a href="#tools" data-hover>TOOLS</a>
+    <a href="#contact" class="nav__hi" data-hover>HI!</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero">
+    <p class="hero__label reveal">VISUAL DESIGNER × AX</p>
+    <h1 class="hero__name" id="heroName" aria-label="JEONG JAEYOUN">
+      <span class="hero__line" data-text="JEONG"></span>
+      <span class="hero__line hero__line--indent" data-text="JAEYOUN"></span>
+    </h1>
+    <p class="hero__tagline reveal">
+      <span class="hero__tagline-strong">AI를 다루는 디자이너</span>, 정재윤입니다.<br>
+      기술의 효율로 디자인의 가치를 증명합니다.
+    </p>
+    <div class="hero__hint reveal" aria-hidden="true">
+      <span class="hero__hint-icon">↖</span> 글자를 건드려 보세요
+    </div>
+    <div class="hero__scroll" aria-hidden="true">SCROLL<span class="hero__scroll-bar"></span></div>
+  </section>
+
+  <!-- ═══════════ ABOUT ═══════════ -->
+  <section class="about">
+    <p class="about__text reveal">
+      편집·영상·모션·일러스트 — 시각 디자인의 전 영역을 다루고,<br class="br-desktop">
+      <em>생성형 AI와 Python 자동화</em>로 만드는 방식 자체를 다시 설계합니다.<br class="br-desktop">
+      도구를 다루는 것을 넘어, 기술과 디자인이 만나는 지점에서 일합니다.
+    </p>
+    <ul class="stats reveal">
+      <li class="stats__item"><strong data-count="504">0</strong><span>제작한 일러스트</span></li>
+      <li class="stats__item"><strong data-count="150" data-suffix="+">0</strong><span>연간 발행 교재</span></li>
+      <li class="stats__item"><strong data-count="70" data-suffix="%">0</strong><span>AI로 단축한 작업 시간</span></li>
+      <li class="stats__item"><strong data-count="246" data-suffix="H">0</strong><span>AX 교육 강의 시간</span></li>
+    </ul>
+  </section>
+
+  <!-- ═══════════ WORK ═══════════ -->
+  <section class="work" id="work">
+    <h2 class="section-title reveal"><span class="section-title__num">01</span>WORK</h2>
+
+    <div class="work__grid">
+
+      <article class="card card--wide reveal" data-modal="verdant" data-hover>
+        <div class="card__media">
+          <img src="assets/img/grad-poster.jpg" alt="Verdant Mandala 포스터" loading="lazy">
+          <video class="card__video" muted loop playsinline preload="none"
+                 src="assets/video/verdant-mandala.mp4" poster="assets/img/vm-poster.jpg"></video>
+        </div>
+        <div class="card__info">
+          <h3>Verdant Mandala</h3>
+          <p>졸업작품 · 모션 그래픽 &amp; 전시<span class="card__year">2024</span></p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-modal="tokiland" data-hover>
+        <div class="card__media card__media--dummy">
+          <div class="dummy-toki" aria-hidden="true">
+            <span class="dummy-toki__ear dummy-toki__ear--l"></span>
+            <span class="dummy-toki__ear dummy-toki__ear--r"></span>
+            <span class="dummy-toki__face"></span>
+            <span class="dummy-toki__tag">이미지 준비 중</span>
+          </div>
+        </div>
+        <div class="card__info">
+          <h3>토키랜드 — 그림맞추기</h3>
+          <p>게임 UI/UX · 진행 중<span class="card__year">2026</span></p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-modal="anastasia" data-hover>
+        <div class="card__media">
+          <img src="assets/img/ana-poster.jpg" alt="아나스타시아의 전설 스틸컷" loading="lazy">
+          <video class="card__video" muted loop playsinline preload="none"
+                 src="assets/video/anastasia.mp4" poster="assets/img/ana-poster.jpg"></video>
+        </div>
+        <div class="card__info">
+          <h3>아나스타시아의 전설</h3>
+          <p>영상 · 모션<span class="card__year">—</span></p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-modal="carday" data-hover>
+        <div class="card__media">
+          <img src="assets/img/car-poster.jpg" alt="자동차의 하루 스틸컷" loading="lazy">
+          <video class="card__video" muted loop playsinline preload="none"
+                 src="assets/video/car-day.mp4" poster="assets/img/car-poster.jpg"></video>
+        </div>
+        <div class="card__info">
+          <h3>자동차의 하루</h3>
+          <p>영상 · 모션<span class="card__year">—</span></p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-modal="fermata" data-hover>
+        <div class="card__media">
+          <img src="assets/img/maw-1.jpg" alt="라 페르마타 모금 연주회 브랜딩" loading="lazy">
+        </div>
+        <div class="card__info">
+          <h3>La Fermata 모금 연주회</h3>
+          <p>브랜딩 · 편집<span class="card__year">2025</span></p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-modal="moonjar" data-hover>
+        <div class="card__media">
+          <img src="assets/img/ai-moonjar.jpg" alt="The Moon Jar — AI artwork" loading="lazy">
+        </div>
+        <div class="card__info">
+          <h3>The Moon Jar</h3>
+          <p>AI Artwork 시리즈<span class="card__year">2026</span></p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ JOURNEY ═══════════ -->
+  <section class="journey" id="journey">
+    <h2 class="section-title reveal"><span class="section-title__num">02</span>JOURNEY</h2>
+    <p class="journey__intro reveal">디자이너가 AI를 만나 일하는 방식이 바뀐 여정.</p>
+
+    <ol class="timeline">
+      <li class="timeline__item reveal">
+        <span class="timeline__year">2020</span>
+        <div class="timeline__body">
+          <h3>연세대학교 미래캠퍼스 시각디자인학</h3>
+          <p>디자인예술학부 · 4.17/4.5 · 2025년 졸업</p>
+        </div>
+      </li>
+      <li class="timeline__item reveal">
+        <span class="timeline__year">2022</span>
+        <div class="timeline__body">
+          <h3>네오폰스 — 언어치료 에듀테크 앱</h3>
+          <p>핵심 단어 일러스트 <strong>504종</strong> 제작, Figma 컴포넌트화·네이밍 규칙으로
+          디자인-개발 협업 프로세스 구축. 앱에 누락 없이 구현.</p>
+          <span class="timeline__tag">UI/UX · Figma</span>
+        </div>
+      </li>
+      <li class="timeline__item reveal">
+        <span class="timeline__year">2024</span>
+        <div class="timeline__body">
+          <h3>대성마이맥 션티·키스영어연구소 — 디자이너 &amp; AX 총괄</h3>
+          <p>연 150권+ 교재 디자인, 마감 준수율 100%. Python·TTS 음성 자동 생성 시스템과
+          GPT API 삽화 파이프라인 구축으로 작업 시간 <strong>70% 단축</strong>.
+          강의 쇼츠 최고 조회수 62만 회.</p>
+          <span class="timeline__tag">AX · 자동화</span>
+        </div>
+      </li>
+      <li class="timeline__item reveal">
+        <span class="timeline__year">2026</span>
+        <div class="timeline__body">
+          <h3>AX 교육 현장 보조강사</h3>
+          <p>한국지역난방공사 AI PIONEER·데이터 매니저, 율촌 기획/리서치 Track,
+          팀스파르타 삼성인력개발원 임원교육 — Gemini·Claude Code·Copilot 실습, 누적 246시간.</p>
+          <span class="timeline__tag">AX 교육</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ═══════════ TOOLS ═══════════ -->
+  <section class="tools" id="tools">
+    <h2 class="section-title reveal"><span class="section-title__num">03</span>TOOLS</h2>
+    <div class="tools__cols">
+      <div class="tools__col reveal">
+        <h3>Design</h3>
+        <ul class="chips">
+          <li>InDesign</li><li>Illustrator</li><li>Photoshop</li>
+          <li>After Effects</li><li>Premiere Pro</li><li>Figma</li>
+        </ul>
+      </div>
+      <div class="tools__col reveal">
+        <h3>AI / AX</h3>
+        <ul class="chips chips--accent">
+          <li>Claude · Claude Code</li><li>GPT</li><li>Gemini</li>
+          <li>Copilot</li><li>Python 자동화</li>
+        </ul>
+      </div>
+    </div>
+    <p class="tools__cert reveal">Adobe ACP Photoshop 인증</p>
+  </section>
+
+  <!-- ═══════════ CONTACT ═══════════ -->
+  <section class="contact" id="contact">
+    <h2 class="contact__title reveal">같이 만들어요<span class="contact__period">.</span></h2>
+    <button class="contact__email" id="emailBtn" data-hover
+            data-email="jeong08203@gmail.com" type="button">
+      jeong08203@gmail.com
+      <span class="contact__copied" aria-live="polite"></span>
+    </button>
+    <p class="contact__note reveal">클릭하면 주소가 복사됩니다.</p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 Jeong Jaeyoun</p>
+  <p class="footer__wit">이 사이트도 AI와 함께 만들었습니다 — 그게 제 일이거든요.</p>
+</footer>
+
+<!-- ═══════════ 상세 모달 ═══════════ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" hidden>
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-close data-hover aria-label="닫기">×</button>
+    <div class="modal__content" id="modalContent"></div>
+  </div>
+</div>
+
+<!-- 모달 콘텐츠 템플릿 -->
+<template id="tpl-verdant">
+  <h3>Verdant Mandala</h3>
+  <p class="modal__meta">2024 · 졸업작품 · Illustrator, After Effects</p>
+  <video controls preload="metadata" poster="assets/img/vm-poster.jpg" src="assets/video/verdant-mandala.mp4"></video>
+  <img src="assets/img/grad-poster.jpg" alt="포스터" loading="lazy">
+  <img src="assets/img/grad-exhibit1.jpg" alt="전시 현장" loading="lazy">
+  <img src="assets/img/grad-exhibit2.jpg" alt="전시 현장" loading="lazy">
+  <p>자연의 생장을 만다라 패턴으로 재해석한 모션 그래픽 졸업작품.
+  포스터·브로슈어·영상·전시 공간까지 하나의 시스템으로 설계했습니다. <em>[설명 확인 필요]</em></p>
+</template>
+
+<template id="tpl-tokiland">
+  <h3>토키랜드 — 그림맞추기</h3>
+  <p class="modal__meta">2026 · 게임 UI/UX · Figma (진행 중)</p>
+  <p>당군·아크·보보 캐릭터가 등장하는 그림맞추기 게임의 화면 설계.
+  수십 개 화면의 플로우와 컴포넌트를 Figma로 구축하고 있습니다.</p>
+  <p><a class="modal__link" href="https://www.figma.com/design/mAsBbwMj708Z6iBpEaKGbc/?node-id=7-2870" target="_blank" rel="noopener" data-hover>Figma에서 작업 보기 →</a></p>
+  <p><em>대표 이미지는 준비 중입니다.</em></p>
+</template>
+
+<template id="tpl-anastasia">
+  <h3>아나스타시아의 전설</h3>
+  <p class="modal__meta">영상 · 모션 <em>[연도·역할 확인 필요]</em></p>
+  <video controls preload="metadata" poster="assets/img/ana-poster.jpg" src="assets/video/anastasia.mp4"></video>
+</template>
+
+<template id="tpl-carday">
+  <h3>자동차의 하루</h3>
+  <p class="modal__meta">영상 · 모션 <em>[연도·역할 확인 필요]</em></p>
+  <video controls preload="metadata" poster="assets/img/car-poster.jpg" src="assets/video/car-day.mp4"></video>
+</template>
+
+<template id="tpl-fermata">
+  <h3>La Fermata 모금 연주회 브랜딩</h3>
+  <p class="modal__meta">2025 · 브랜딩·편집 · Illustrator, InDesign <em>[확인 필요]</em></p>
+  <img src="assets/img/maw-1.jpg" alt="브랜딩 전시" loading="lazy">
+  <img src="assets/img/maw-2.jpg" alt="브랜딩 전시" loading="lazy">
+  <img src="assets/img/maw-poster.jpg" alt="포스터" loading="lazy">
+  <p>모금 연주회 '10월의 어느 멋진 날에'의 포스터·브로슈어·프로그램북 브랜딩.</p>
+</template>
+
+<template id="tpl-moonjar">
+  <h3>The Moon Jar — AI Artwork</h3>
+  <p class="modal__meta">2026 · AI 협업 아트웍 · 생성형 AI + Photoshop</p>
+  <img src="assets/img/ai-moonjar.jpg" alt="The Moon Jar" loading="lazy">
+  <img src="assets/img/ai-chaekgeori.jpg" alt="책거리" loading="lazy">
+  <img src="assets/img/ai-mockup.jpg" alt="목업" loading="lazy">
+  <p>달항아리와 책거리 — 한국적 소재를 생성형 AI와 함께 재해석한 인쇄 아트웍 시리즈.
+  프롬프트 설계부터 후보정·인쇄 데이터까지 전 과정을 직접 다뤘습니다.</p>
+</template>
+
+<script src="js/main.js"></script>
+</body>
+</html>
