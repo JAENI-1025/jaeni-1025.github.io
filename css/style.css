@@ -176,7 +176,100 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .card--pad{grid-column:1/-1;width:100%;max-width:62.5%;margin-inline:auto}
 .card--pad .card__media{aspect-ratio:4/3}
 
-/* 토키랜드 — 호버 시 단어 일러스트가 팡 터지는 인터랙션 */
+/* ── 토키랜드 미니게임 ── */
+.card--game .card__media{overflow:hidden}
+.card--game:hover .card__media img{transform:none}   /* 플레이 중 배경 확대 방지 */
+.toki-game{position:relative}
+.toki-game__bg{width:100%;height:100%;object-fit:cover;display:block}
+
+/* 검은 실루엣 위에 얹히는 빈칸 */
+.toki-slot{
+  position:absolute;left:var(--x);top:var(--y);
+  width:var(--w);height:var(--h);
+  transform:translate(-50%,-50%);
+  z-index:2;
+}
+.toki-slot::before{                     /* 드롭 가이드 */
+  content:'';position:absolute;inset:-22% -18%;
+  border-radius:14px;border:2px dashed transparent;
+  transition:border-color .18s,background-color .18s;
+}
+.toki-slot.is-over::before{border-color:var(--accent);background-color:rgba(47,69,255,.14)}
+.toki-slot::after{                      /* 채워진 컬러 그림 */
+  content:'';position:absolute;inset:0;
+  background:var(--art) center/contain no-repeat;
+  opacity:0;transform:scale(.35);
+  transition:opacity .2s,transform .5s cubic-bezier(.34,1.56,.64,1);
+}
+.toki-slot.is-filled::after{opacity:1;transform:scale(1)}
+.toki-slot[data-key="car"]  {--art:url(../assets/img/game/car.png)}
+.toki-slot[data-key="space"]{--art:url(../assets/img/game/space.png)}
+.toki-slot[data-key="astro"]{--art:url(../assets/img/game/astro.png)}
+.toki-slot[data-key="earth"]{--art:url(../assets/img/game/earth.png)}
+
+/* 끌어다 놓는 조각 */
+.toki-pieces{position:absolute;inset:0;z-index:5;pointer-events:none}
+.toki-piece{pointer-events:auto}
+.toki-piece{
+  position:absolute;left:var(--l);top:var(--t);
+  width:var(--w);height:auto;
+  transform:translate(-50%,-50%);
+  cursor:grab;touch-action:none;-webkit-user-drag:none;user-select:none;
+  filter:drop-shadow(0 8px 16px rgba(20,20,15,.20));
+  animation:tokiBob 3.6s ease-in-out infinite;
+  animation-delay:var(--d,0s);
+}
+.toki-piece:nth-child(2){--d:.9s}
+.toki-piece:nth-child(3){--d:1.8s}
+.toki-piece:nth-child(4){--d:2.6s}
+@keyframes tokiBob{
+  0%,100%{transform:translate(-50%,-50%)}
+  50%{transform:translate(-50%,calc(-50% - 7px))}
+}
+.toki-piece.is-dragging{
+  animation:none;transform:none;cursor:grabbing;z-index:9999;
+  filter:drop-shadow(0 20px 32px rgba(20,20,15,.3));
+}
+.toki-piece.is-placed{opacity:0;pointer-events:none;animation:none}
+.toki-piece.is-returning{animation:tokiShake .4s ease}
+@keyframes tokiShake{
+  0%,100%{transform:translate(-50%,-50%) rotate(0)}
+  25%{transform:translate(-50%,-50%) rotate(-9deg)}
+  75%{transform:translate(-50%,-50%) rotate(9deg)}
+}
+
+/* 완료 축하 */
+.toki-cheer{
+  position:absolute;left:50%;top:44%;transform:translate(-50%,-50%) scale(.7);
+  z-index:6;text-align:center;pointer-events:none;
+  background:rgba(255,255,255,.94);border-radius:20px;
+  padding:18px 30px;box-shadow:0 18px 40px rgba(20,20,15,.22);
+  opacity:0;transition:opacity .3s,transform .5s cubic-bezier(.34,1.56,.64,1);
+}
+.toki-cheer strong{display:block;font-weight:700;font-size:clamp(18px,2.4vw,26px)}
+.toki-cheer span{font-size:12.5px;color:var(--gray)}
+.card--game.is-cleared .toki-cheer{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.toki-replay{
+  position:absolute;right:12px;bottom:10px;z-index:7;
+  border:1px solid var(--line);background:#fff;color:var(--ink);
+  border-radius:999px;padding:7px 16px;font-family:var(--font-ko);font-size:12px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.card--game.is-cleared .toki-replay{opacity:1;pointer-events:auto}
+
+/* 카드 정보 보조 요소 */
+.card__play{
+  font-family:var(--font-ko);font-weight:300;font-size:11.5px;
+  color:var(--accent);background:var(--accent-soft);
+  border-radius:999px;padding:4px 11px;margin-left:8px;white-space:nowrap;
+}
+.card--game.is-cleared .card__play{display:none}
+.card__more{
+  border:none;background:none;color:var(--accent);font-family:var(--font-ko);
+  font-size:12.5px;margin-left:10px;border-bottom:1px solid currentColor;padding:0 1px;
+}
+
+/* 토키랜드 — 완료 시 단어 일러스트가 팡 터지는 축하 */
 .toki-pops{position:absolute;inset:0;pointer-events:none;z-index:3}
 .toki-pop{
   position:absolute;left:var(--l);top:var(--t);
@@ -187,8 +280,7 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
   transition:transform .55s cubic-bezier(.34,1.56,.64,1),opacity .28s ease;
   transition-delay:var(--d,0ms);
 }
-.card--pad:hover .toki-pop,
-.card--pad.is-popped .toki-pop{
+.card--pad.is-cleared .toki-pop{
   transform:translate(-50%,-50%) scale(1) rotate(var(--r,0deg));
   opacity:1;
 }
@@ -416,8 +508,18 @@ body.modal-open{overflow:hidden}
   .card--pad{max-width:100%}
   .card--half .card__media{aspect-ratio:16/9}
   .card--pad .card__media{aspect-ratio:4/3}
-  /* 좁은 화면에서는 팝이 화면 밖으로 나가므로 안쪽으로 당기고 축소 */
+  /* 좁은 화면에서는 축하 일러스트가 화면 밖으로 나가므로 안쪽으로 당기고 축소 */
+  .toki-pops{inset:6% 16%}
   .toki-pop{width:calc(var(--w,60px) * .62)}
+  /* 조각은 카드 밖 대신 아래 한 줄로 */
+  .toki-pieces{position:static;display:flex;justify-content:center;align-items:flex-end;
+    gap:16px;margin-top:18px;min-height:76px}
+  .toki-piece{position:static;transform:none;animation:none;width:calc(var(--w) * .78)}
+  .toki-piece.is-returning{animation:tokiShakeFlat .4s ease}
+  @keyframes tokiShakeFlat{
+    0%,100%{transform:rotate(0)}25%{transform:rotate(-9deg)}75%{transform:rotate(9deg)}
+  }
+  .toki-piece.is-placed{display:none}
   .tools__cols{grid-template-columns:1fr}
   .br-desktop{display:none}
   .hero__hint{display:none}
@@ -430,4 +532,7 @@ body.modal-open{overflow:hidden}
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none}
+  /* 애니메이션이 꺼져도 조각 위치는 유지되어야 게임이 가능하다 */
+  .toki-piece{transform:translate(-50%,-50%)}
+  .toki-piece.is-dragging{transform:none}
 }

@@ -151,17 +151,93 @@
     }
   });
 
-  /* ───── 토키랜드 팝: 터치 기기에서는 화면에 들어오면 터뜨림 ───── */
-  const padCard = document.querySelector('.card--pad');
-  if (padCard && !finePointer) {
-    const popIO = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (!en.isIntersecting) return;
-        en.target.classList.add('is-popped');
-        popIO.unobserve(en.target);
+  /* ───── 토키랜드 그림맞추기: 드래그 앤 드롭 ───── */
+  const gameCard = document.querySelector('.card--game');
+  if (gameCard) {
+    const pieces = [...gameCard.querySelectorAll('.toki-piece')];
+    const slots = [...gameCard.querySelectorAll('.toki-slot')];
+    const replayBtn = gameCard.querySelector('.toki-replay');
+    let solved = 0;
+
+    // 포인터 위치에 있는 슬롯 찾기 (실루엣이 작으므로 여유를 둔다)
+    const PAD = 34;
+    function slotAt(x, y) {
+      return slots.find(s => {
+        if (s.classList.contains('is-filled')) return false;
+        const r = s.getBoundingClientRect();
+        return x >= r.left - PAD && x <= r.right + PAD &&
+               y >= r.top - PAD && y <= r.bottom + PAD;
+      }) || null;
+    }
+
+    function clearDragStyles(piece) {
+      piece.style.position = '';
+      piece.style.left = '';
+      piece.style.top = '';
+      piece.style.width = '';
+    }
+
+    pieces.forEach(piece => {
+      piece.addEventListener('pointerdown', e => {
+        if (piece.classList.contains('is-placed')) return;
+        e.preventDefault();
+
+        const rect = piece.getBoundingClientRect();
+        const grabX = e.clientX - rect.left;
+        const grabY = e.clientY - rect.top;
+
+        piece.classList.remove('is-returning');
+        piece.classList.add('is-dragging');
+        piece.style.position = 'fixed';
+        piece.style.width = rect.width + 'px';
+        piece.style.left = rect.left + 'px';
+        piece.style.top = rect.top + 'px';
+        piece.setPointerCapture(e.pointerId);
+
+        const onMove = ev => {
+          piece.style.left = (ev.clientX - grabX) + 'px';
+          piece.style.top = (ev.clientY - grabY) + 'px';
+          const hit = slotAt(ev.clientX, ev.clientY);
+          slots.forEach(s => s.classList.toggle('is-over', s === hit));
+        };
+
+        const onUp = ev => {
+          piece.removeEventListener('pointermove', onMove);
+          piece.removeEventListener('pointerup', onUp);
+          piece.removeEventListener('pointercancel', onUp);
+          piece.classList.remove('is-dragging');
+          slots.forEach(s => s.classList.remove('is-over'));
+
+          const hit = slotAt(ev.clientX, ev.clientY);
+          clearDragStyles(piece);
+
+          if (hit && hit.dataset.key === piece.dataset.key) {
+            hit.classList.add('is-filled');
+            piece.classList.add('is-placed');
+            solved++;
+            if (solved === slots.length) {
+              setTimeout(() => gameCard.classList.add('is-cleared'), 380);
+            }
+          } else {
+            piece.classList.add('is-returning');
+            setTimeout(() => piece.classList.remove('is-returning'), 420);
+          }
+        };
+
+        piece.addEventListener('pointermove', onMove);
+        piece.addEventListener('pointerup', onUp);
+        piece.addEventListener('pointercancel', onUp);
       });
-    }, { threshold: 0.4 });
-    popIO.observe(padCard);
+    });
+
+    if (replayBtn) {
+      replayBtn.addEventListener('click', () => {
+        gameCard.classList.remove('is-cleared');
+        slots.forEach(s => s.classList.remove('is-filled'));
+        pieces.forEach(p => p.classList.remove('is-placed'));
+        solved = 0;
+      });
+    }
   }
 
   /* ───── 타임라인 선 드로잉 ───── */
@@ -197,8 +273,9 @@
     modalContent.querySelectorAll('video').forEach(v => v.pause());
     modalContent.replaceChildren();
   }
-  document.querySelectorAll('[data-modal]').forEach(card =>
-    card.addEventListener('click', () => openModal(card.dataset.modal)));
+  // 갤러리 항목은 드래그 판별이 필요해 아래에서 따로 처리한다
+  document.querySelectorAll('[data-modal]:not(.pgal__item)').forEach(el =>
+    el.addEventListener('click', () => openModal(el.dataset.modal)));
   modal.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeModal(); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 
