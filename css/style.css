@@ -151,9 +151,11 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .stats{
   list-style:none;display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:20px;margin-top:clamp(40px,7vh,72px);
-  border-top:1px solid var(--line);padding-top:32px;
+  gap:20px;
+  border-bottom:1px solid var(--line);padding-bottom:32px;
+  margin-bottom:clamp(40px,7vh,72px);
 }
+.about__text--second{margin-top:1.2em}
 .stats__item{display:flex;flex-direction:column;gap:4px}
 .stats__item strong{
   font-family:var(--font-en);font-weight:800;
@@ -164,12 +166,15 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 /* ═══════════ WORK ═══════════ */
 .work__grid{
   display:grid;gap:clamp(20px,3vw,36px);
-  grid-template-columns:repeat(6,1fr);
+  grid-template-columns:repeat(12,1fr);
 }
-.card{position:relative;grid-column:span 3}
+.card{position:relative;grid-column:span 6}
 .card--wide{grid-column:1/-1}
-.card--third{grid-column:span 2}
-.card--third .card__media{aspect-ratio:4/5}
+.card--half{grid-column:span 6}
+.card--half .card__media{aspect-ratio:16/9}
+/* 아이패드 비율, 가운데 정렬 */
+.card--pad{grid-column:4/10}
+.card--pad .card__media{aspect-ratio:4/3}
 .card__media{
   position:relative;overflow:hidden;border-radius:var(--radius);
   aspect-ratio:4/3;background:var(--accent-soft);
@@ -307,7 +312,27 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .chips li:hover{transform:translateY(-3px);border-color:var(--ink)}
 .chips--accent li{background:var(--accent-soft);border-color:transparent;color:var(--accent);font-weight:500}
 .chips--accent li:hover{border-color:var(--accent)}
-.tools__cert{margin-top:36px;font-size:12.5px;color:var(--gray)}
+
+/* ═══════════ CERTIFICATIONS ═══════════ */
+.certs__list{
+  list-style:none;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:clamp(16px,2.5vw,28px);
+}
+.certs__item{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(22px,3vw,34px);
+  display:flex;flex-direction:column;gap:10px;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s;
+}
+.certs__item:hover{transform:translateY(-5px);border-color:var(--accent)}
+.certs__issuer{
+  font-family:var(--font-en);font-weight:500;font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--accent);
+}
+.certs__issuer em{color:var(--gray);font-weight:300;margin-left:6px;font-style:normal}
+.certs__item h3{font-weight:700;font-size:clamp(16px,2vw,20px);line-height:1.35}
+.certs__item p{font-size:13.5px;color:var(--gray);line-height:1.7}
 
 /* ═══════════ CONTACT ═══════════ */
 .contact{text-align:center;padding-bottom:clamp(80px,14vh,160px)}
@@ -370,8 +395,9 @@ body.modal-open{overflow:hidden}
 /* ═══════════ 반응형 ═══════════ */
 @media (max-width:720px){
   .work__grid{grid-template-columns:1fr}
-  .card,.card--third{grid-column:1/-1}
-  .card--third .card__media{aspect-ratio:4/3}
+  .card,.card--half,.card--pad{grid-column:1/-1}
+  .card--half .card__media{aspect-ratio:16/9}
+  .card--pad .card__media{aspect-ratio:4/3}
   .tools__cols{grid-template-columns:1fr}
   .br-desktop{display:none}
   .hero__hint{display:none}
