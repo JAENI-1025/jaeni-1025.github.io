@@ -428,6 +428,7 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 }
 .timeline__body h3{font-weight:700;font-size:clamp(15px,2vw,19px);margin:6px 0 8px}
 .timeline__body p{font-size:14.5px;color:#4c4c44;max-width:640px}
+.timeline__body p + p{margin-top:12px}
 .timeline__body strong{color:var(--ink);font-weight:700}
 .timeline__tag{
   display:inline-block;margin-top:12px;padding:5px 14px;border-radius:999px;
