@@ -167,19 +167,19 @@
         <figure class="pgal__item" data-title="한국제면 캐릭터" data-cat="브랜드 캐릭터 제안 · 며니, 쥬기와 꼬달" data-modal="noodle">
           <img src="assets/img/char-noodle-poster.jpg" alt="한국제면 브랜드 캐릭터 포스터" loading="lazy" draggable="false">
         </figure>
-        <figure class="pgal__item" data-title="Winter Night with Wishful Melodies" data-cat="La Fermata × Make-A-Wish · 2025" data-modal="fermata">
+        <figure class="pgal__item" data-title="Winter Night with Wishful Melodies" data-cat="La Fermata × Make-A-Wish · 2025" data-modal="fermata-winter">
           <img src="assets/img/maw-poster.jpg" alt="Winter Night with Wishful Melodies 포스터" loading="lazy" draggable="false">
         </figure>
-        <figure class="pgal__item" data-title="To the Little Dreamer" data-cat="La Fermata × Make-A-Wish · 2025" data-modal="fermata">
+        <figure class="pgal__item" data-title="To the Little Dreamer" data-cat="La Fermata × Make-A-Wish · 2025 · 블루" data-modal="fermata-dreamer">
           <img src="assets/img/dreamer-a.jpg" alt="To the Little Dreamer 포스터 (블루)" loading="lazy" draggable="false">
         </figure>
-        <figure class="pgal__item" data-title="To the Little Dreamer" data-cat="La Fermata × Make-A-Wish · 2025" data-modal="fermata">
+        <figure class="pgal__item" data-title="To the Little Dreamer" data-cat="La Fermata × Make-A-Wish · 2025 · 화이트" data-modal="fermata-dreamer">
           <img src="assets/img/dreamer-b.jpg" alt="To the Little Dreamer 포스터 (화이트)" loading="lazy" draggable="false">
         </figure>
-        <figure class="pgal__item" data-title="Make A Wish" data-cat="제2회 라 페르마타 모금 연주회 · 2024" data-modal="fermata">
+        <figure class="pgal__item" data-title="Make A Wish" data-cat="제2회 라 페르마타 모금 연주회 · 2024" data-modal="fermata-maw">
           <img src="assets/img/maw-navy.jpg" alt="Make A Wish 포스터" loading="lazy" draggable="false">
         </figure>
-        <figure class="pgal__item" data-title="10월의 어느 멋진 날에" data-cat="제1회 라 페르마타 가을 모금 연주회 · 2023" data-modal="fermata">
+        <figure class="pgal__item" data-title="10월의 어느 멋진 날에" data-cat="제1회 라 페르마타 가을 모금 연주회 · 2023" data-modal="fermata-october">
           <img src="assets/img/maw-orange.jpg" alt="10월의 어느 멋진 날에 포스터" loading="lazy" draggable="false">
         </figure>
         <figure class="pgal__item" data-title="Brain Illustration" data-cat="World Neurosurgery 논문 일러스트" data-modal="brain">
@@ -367,15 +367,55 @@
   <video controls preload="metadata" poster="assets/img/car-poster.jpg" src="assets/video/car-day.mp4"></video>
 </template>
 
-<template id="tpl-fermata">
-  <h3>La Fermata × Make-A-Wish 연주회 브랜딩</h3>
-  <p class="modal__meta">2023–2025 · 브랜딩·편집 · Illustrator, InDesign</p>
-  <img src="assets/img/maw-1.jpg" alt="브랜딩 전시 스프레드" loading="lazy">
-  <img src="assets/img/maw-2.jpg" alt="브랜딩 전시 스프레드" loading="lazy">
-  <p>메이크어위시 코리아 후원 라 페르마타 모금 연주회 시리즈 — '10월의 어느 멋진 날에'(2023),
-  'Make A Wish'(2024), 'To the Little Dreamer'·'Winter Night with Wishful Melodies'(2025)의
-  포스터·브로슈어·프로그램북·굿즈를 하나의 브랜드 시스템으로 디자인했습니다.
-  총무 겸 디자인 담당으로 제작 전 과정을 이끌었습니다.</p>
+<template id="tpl-fermata-winter">
+  <h3>Winter Night with Wishful Melodies</h3>
+  <p class="modal__meta">라 페르마타 × 메이크어위시 · 2025.12.26 · Illustrator, InDesign</p>
+  <img src="assets/img/maw-poster.jpg" alt="Winter Night with Wishful Melodies 포스터" loading="lazy">
+  <p>겨울 연주회라는 소재를 한 장면으로 그리는 대신, 오브제를 하나씩 칸에 담았습니다.
+  별·전화기·음표·눈송이·리스·산타·선물·눈사람·트리를 크기가 다른 타일에 나눠 넣고,
+  오른쪽 아래 리본 상자를 가장 크게 두어 시선이 마지막에 닿게 했습니다.</p>
+  <p>레드·아이보리·네이비 세 가지 색과 점선 테두리만으로 요소를 묶었습니다.
+  앞선 회차와 색은 다르지만 로고 배치와 정보 위계 — 장소·일시는 왼쪽 아래, 로고는 오른쪽 아래 —
+  는 시리즈 규칙 그대로 지켰습니다.</p>
+</template>
+
+<template id="tpl-fermata-dreamer">
+  <h3>To the Little Dreamer</h3>
+  <p class="modal__meta">라 페르마타 × 메이크어위시 · 2025.7.5 · Illustrator, InDesign</p>
+  <img src="assets/img/dreamer-a.jpg" alt="To the Little Dreamer 포스터 (블루)" loading="lazy">
+  <img src="assets/img/dreamer-b.jpg" alt="To the Little Dreamer 포스터 (화이트)" loading="lazy">
+  <p>아이가 잠들며 꾸는 꿈을 한 겹의 선으로만 그렸습니다.
+  결을 따라 흐르는 물결선 안에 고래·피아노·물고기·해초·별을 심어,
+  물속인지 밤하늘인지 정하지 않은 채 두었습니다.</p>
+  <p>같은 그림을 <strong>블루 바탕에 흰 선</strong>, <strong>흰 바탕에 블루 선</strong> 두 벌로 만들었습니다.
+  인쇄물·현수막·온라인 게시물마다 놓이는 배경이 달라서, 어디에 올려도 선이 묻히지 않도록
+  골라 쓸 수 있게 한 것입니다.</p>
+</template>
+
+<template id="tpl-fermata-maw">
+  <h3>Make A Wish</h3>
+  <p class="modal__meta">제2회 라 페르마타 모금 연주회 · 2024.11.23 · Illustrator, InDesign</p>
+  <img src="assets/img/maw-navy.jpg" alt="Make A Wish 포스터" loading="lazy">
+  <img src="assets/img/maw-2.jpg" alt="Make A Wish 브로슈어·프로그램북 스프레드" loading="lazy">
+  <p>'소원'을 별 모양으로 뚫린 창으로 풀었습니다.
+  창 안에는 아이가 바라는 것들 — 로켓, 조개, 양, 종이비행기 — 을 담고,
+  별에서 쏟아지는 빛기둥 아래 눈을 감은 아이를 세웠습니다.</p>
+  <p>포스터에서 끝내지 않고 프로그램북 표지, 목차, 프로그램 페이지, 후원 안내까지
+  같은 별 모티프와 네이비-블루 계열로 이어 붙였습니다. 표지의 별은 QR을 얹는 자리로 다시 썼습니다.</p>
+</template>
+
+<template id="tpl-fermata-october">
+  <h3>10월의 어느 멋진 날에</h3>
+  <p class="modal__meta">제1회 라 페르마타 가을 모금 연주회 · 2023.10.28 · Illustrator, InDesign</p>
+  <img src="assets/img/maw-orange.jpg" alt="10월의 어느 멋진 날에 포스터" loading="lazy">
+  <img src="assets/img/maw-1.jpg" alt="10월의 어느 멋진 날에 브로슈어·프로그램북 스프레드" loading="lazy">
+  <p>'라 페르마타(La Fermata)'는 이탈리아어로 정류장을 뜻합니다.
+  그 이름을 그대로 그림의 소재로 삼아, 노을이 내린 정류장에 버스가 서 있는 장면을 그렸습니다.
+  화면 앞쪽에는 피아노 건반과 LP를 가을 잎과 함께 깔아, 음악이 일상 한가운데 놓이도록 했습니다.</p>
+  <p>시리즈의 첫 회차라 여기서 브랜드의 기준을 세웠습니다 —
+  로고 잠금, 색 팔레트, 브로슈어 판형, 프로그램 페이지 포맷.
+  이후 회차는 소재와 색만 바꾸고 이 뼈대를 그대로 썼습니다.
+  총무 겸 디자인 담당으로 제작 전 과정을 맡았습니다.</p>
 </template>
 
 <template id="tpl-moonjar">
