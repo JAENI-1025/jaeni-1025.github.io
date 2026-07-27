@@ -329,8 +329,15 @@
     modalContent.replaceChildren();
   }
   // 갤러리 항목은 드래그 판별이 필요해 아래에서 따로 처리한다
-  document.querySelectorAll('[data-modal]:not(.pgal__item)').forEach(el =>
-    el.addEventListener('click', () => openModal(el.dataset.modal)));
+  document.querySelectorAll('[data-modal]:not(.pgal__item)').forEach(el => {
+    el.addEventListener('click', () => openModal(el.dataset.modal));
+    // 키보드로도 열 수 있게 (버튼이 아닌 요소에만 필요)
+    if (el.tabIndex >= 0 && el.tagName !== 'BUTTON') {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(el.dataset.modal); }
+      });
+    }
+  });
   modal.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeModal(); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 

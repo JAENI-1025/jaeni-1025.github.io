@@ -235,8 +235,8 @@
         <span class="timeline__year">2026</span>
         <div class="timeline__body">
           <h3>AX 교육 — 교육 운영 매니저 &amp; 기술튜터</h3>
-          <p>삼성전자 임원 생성형 AI 교육 — 운영매니저 <strong>133H</strong><br>
-          삼성전자 임원 생성형 AI 교육 — 보조 강사 <strong>80H</strong><br>
+          <p>삼성전자 임원 생성형 AI 교육 — 운영매니저 133H<br>
+          삼성전자 임원 생성형 AI 교육 — 보조 강사 80H<br>
           Gemini 생태계와 Claude Code 멀티에이전트 실습, 해커톤 운영 및 1:1 튜터링</p>
           <p>한국지역난방공사 AI PIONEER·데이터 매니저 과정<br>
           Python·SQL 기초부터 바이브코딩 기반 웹서비스 기획·배포(GitHub·Vercel) 코칭</p>
@@ -274,25 +274,29 @@
   <section class="certs" id="certs">
     <h2 class="section-title reveal"><span class="section-title__num">05</span>CERTIFICATIONS</h2>
     <ul class="certs__list">
-      <li class="certs__item reveal">
-        <span class="certs__issuer">Adobe</span>
+      <li class="certs__item reveal" data-modal="cert-acp" data-hover tabindex="0" role="button">
+        <span class="certs__issuer">Adobe <em>2022</em></span>
         <h3>ACP Photoshop</h3>
         <p>Adobe Certified Professional — 포토샵 실무 역량 인증</p>
+        <span class="certs__view">수료증 보기 →</span>
       </li>
-      <li class="certs__item reveal">
+      <li class="certs__item reveal" data-modal="cert-aifund" data-hover tabindex="0" role="button">
         <span class="certs__issuer">Google <em>2026</em></span>
         <h3>AI Fundamentals</h3>
         <p>생성형 AI의 기본 개념을 이해하고 실무 활용의 토대를 갖춤</p>
+        <span class="certs__view">수료증 보기 →</span>
       </li>
-      <li class="certs__item reveal">
+      <li class="certs__item reveal" data-modal="cert-introai" data-hover tabindex="0" role="button">
         <span class="certs__issuer">Google <em>2026</em></span>
         <h3>Introduction to AI</h3>
         <p>AI가 데이터를 학습하는 방식과 작동 원리를 설명할 수 있음</p>
+        <span class="certs__view">수료증 보기 →</span>
       </li>
-      <li class="certs__item reveal">
+      <li class="certs__item reveal" data-modal="cert-productivity" data-hover tabindex="0" role="button">
         <span class="certs__issuer">Google <em>2026</em></span>
         <h3>Maximize Productivity With AI Tools</h3>
         <p>업무 흐름에서 AI를 접목할 지점을 찾아 생산성을 높임</p>
+        <span class="certs__view">수료증 보기 →</span>
       </li>
     </ul>
   </section>
@@ -433,6 +437,38 @@
   <img src="assets/img/cg-mock-7.jpg" alt="책거리 목업 7" loading="lazy">
   <p>조선의 책거리 그림을 현대적 정물로 재해석한 AI 협업 아트웍.
   인쇄물과 공간 목업까지 하나의 시리즈로 완성했습니다.</p>
+</template>
+
+<template id="tpl-cert-acp">
+  <h3>Adobe Certified Professional</h3>
+  <p class="modal__meta">Visual Design Using Adobe Photoshop · 2022.03.12</p>
+  <img src="assets/img/certs/acp-photoshop.jpg" alt="Adobe Certified Professional 수료증" loading="lazy">
+  <p>포토샵 실무 역량을 검증하는 Adobe 공인 자격.
+  <a class="modal__link" href="https://verify.certiport.com" target="_blank" rel="noopener">verify.certiport.com</a>에서 확인 코드 wYCc5-2FBu로 조회할 수 있습니다.</p>
+</template>
+
+<template id="tpl-cert-aifund">
+  <h3>AI Fundamentals</h3>
+  <p class="modal__meta">Google · Coursera · 2026.07.22</p>
+  <img src="assets/img/certs/ai-fundamentals.jpg" alt="AI Fundamentals 수료증" loading="lazy">
+  <p>생성형 AI의 기본 개념을 이해하고 실무 활용의 토대를 갖춤.
+  <a class="modal__link" href="https://coursera.org/verify/ZGG2WRSHN0GJ" target="_blank" rel="noopener">수료 여부 확인하기</a></p>
+</template>
+
+<template id="tpl-cert-introai">
+  <h3>Introduction to AI</h3>
+  <p class="modal__meta">Google · Coursera · 2026.07.20</p>
+  <img src="assets/img/certs/intro-to-ai.jpg" alt="Introduction to AI 수료증" loading="lazy">
+  <p>AI가 데이터를 학습하는 방식과 작동 원리를 설명할 수 있음.
+  <a class="modal__link" href="https://coursera.org/verify/LEKMZMDMZU2B" target="_blank" rel="noopener">수료 여부 확인하기</a></p>
+</template>
+
+<template id="tpl-cert-productivity">
+  <h3>Maximize Productivity With AI Tools</h3>
+  <p class="modal__meta">Google · Coursera · 2026.07.22</p>
+  <img src="assets/img/certs/productivity-ai.jpg" alt="Maximize Productivity With AI Tools 수료증" loading="lazy">
+  <p>업무 흐름에서 AI를 접목할 지점을 찾아 생산성을 높임.
+  <a class="modal__link" href="https://coursera.org/verify/9OM1JH6PCDNG" target="_blank" rel="noopener">수료 여부 확인하기</a></p>
 </template>
 
 <script src="js/main.js"></script>
