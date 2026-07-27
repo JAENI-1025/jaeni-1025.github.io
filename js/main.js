@@ -157,7 +157,22 @@
     const pieces = [...gameCard.querySelectorAll('.toki-piece')];
     const slots = [...gameCard.querySelectorAll('.toki-slot')];
     const replayBtn = gameCard.querySelector('.toki-replay');
-    let solved = 0;
+    const scoreNum = gameCard.querySelector('.toki-score span');
+    const cheerNote = gameCard.querySelector('.toki-cheer span');
+    let solved = 0, misses = 0, missTimer = null;
+
+    // 틀린 칸에 놓았을 때: 칸을 붉게 흔들고 안내 문구와 오답 수를 보여준다
+    function flagMiss(slot) {
+      misses++;
+      if (scoreNum) scoreNum.textContent = misses;
+      gameCard.classList.add('has-miss', 'is-missed');
+      slot.classList.add('is-wrong');
+      clearTimeout(missTimer);
+      missTimer = setTimeout(() => {
+        gameCard.classList.remove('is-missed');
+        slot.classList.remove('is-wrong');
+      }, 1100);
+    }
 
     const board = gameCard.querySelector('.toki-game');
 
@@ -244,6 +259,11 @@
               hit.classList.add('is-filled');
               piece.classList.add('is-placed');
               if (++solved === slots.length) {
+                if (cheerNote) {
+                  cheerNote.textContent = misses
+                    ? `${misses}번 틀리고 완성했어요`
+                    : '한 번도 안 틀렸어요';
+                }
                 setTimeout(() => gameCard.classList.add('is-cleared'), 320);
               }
             });
@@ -252,6 +272,7 @@
             clearDragStyles(piece);
             piece.classList.add('is-returning');
             setTimeout(() => piece.classList.remove('is-returning'), 420);
+            if (hit) flagMiss(hit);   // 칸 근처에 놓은 경우에만 오답으로 센다
           }
         };
 
@@ -263,10 +284,13 @@
 
     if (replayBtn) {
       replayBtn.addEventListener('click', () => {
-        gameCard.classList.remove('is-cleared');
-        slots.forEach(s => s.classList.remove('is-filled'));
+        clearTimeout(missTimer);
+        gameCard.classList.remove('is-cleared', 'has-miss', 'is-missed');
+        slots.forEach(s => s.classList.remove('is-filled', 'is-wrong'));
         pieces.forEach(p => p.classList.remove('is-placed'));
         solved = 0;
+        misses = 0;
+        if (scoreNum) scoreNum.textContent = '0';
       });
     }
   }

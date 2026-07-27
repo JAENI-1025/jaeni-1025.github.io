@@ -116,16 +116,25 @@
             <div class="toki-slot" data-key="astro" style="--x:62.9%;--y:84.1%;--w:6.7%;--h:12.8%"></div>
             <div class="toki-slot" data-key="earth" style="--x:88.3%;--y:84.1%;--w:10.0%;--h:12.8%"></div>
 
+            <p class="toki-miss" aria-hidden="true">✕ 앗, 여기가 아니에요</p>
+            <p class="toki-score" aria-hidden="true">✕ <span>0</span></p>
+
             <p class="toki-cheer" aria-live="polite"><strong>잘했어요!</strong><span>네 개 다 맞췄어요</span></p>
             <button class="toki-replay" type="button">다시 하기</button>
           </div>
 
-          <!-- 오른쪽 조각 트레이 -->
+          <!-- 오른쪽 조각 트레이 (물결 모양) -->
           <div class="toki-pieces">
-            <img class="toki-piece" data-key="car"   src="assets/img/game/car.png"   alt="자동차 조각" draggable="false" style="--w:82px">
-            <img class="toki-piece" data-key="space" src="assets/img/game/space.png" alt="우주 조각"   draggable="false" style="--w:80px">
-            <img class="toki-piece" data-key="astro" src="assets/img/game/astro.png" alt="우주인 조각" draggable="false" style="--w:52px">
-            <img class="toki-piece" data-key="earth" src="assets/img/game/earth.png" alt="지구 조각"   draggable="false" style="--w:70px">
+            <svg class="toki-tray toki-tray--v" viewBox="0 0 120 600" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M60 4C90 4 116 12 116 40C116 80 104 80 104 120C104 160 116 160 116 200C116 240 104 240 104 280C104 320 116 320 116 360C116 400 104 400 104 440C104 480 116 480 116 520C116 560 90 596 60 596C30 596 4 560 4 520C4 480 16 480 16 440C16 400 4 400 4 360C4 320 16 320 16 280C16 240 4 240 4 200C4 160 16 160 16 120C16 80 4 80 4 40C4 12 30 4 60 4Z"/>
+            </svg>
+            <svg class="toki-tray toki-tray--h" viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M4 60C4 90 12 116 40 116C80 116 80 104 120 104C160 104 160 116 200 116C240 116 240 104 280 104C320 104 320 116 360 116C400 116 400 104 440 104C480 104 480 116 520 116C560 116 596 90 596 60C596 30 560 4 520 4C480 4 480 16 440 16C400 16 400 4 360 4C320 4 320 16 280 16C240 16 240 4 200 4C160 4 160 16 120 16C80 16 80 4 40 4C12 4 4 30 4 60Z"/>
+            </svg>
+            <img class="toki-piece" data-key="car"   src="assets/img/game/car.png"   alt="자동차 조각" draggable="false" style="--w:74px">
+            <img class="toki-piece" data-key="space" src="assets/img/game/space.png" alt="우주 조각"   draggable="false" style="--w:72px">
+            <img class="toki-piece" data-key="astro" src="assets/img/game/astro.png" alt="우주인 조각" draggable="false" style="--w:46px">
+            <img class="toki-piece" data-key="earth" src="assets/img/game/earth.png" alt="지구 조각"   draggable="false" style="--w:62px">
           </div>
         </div>
 
