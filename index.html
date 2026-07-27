@@ -106,25 +106,27 @@
       </article>
 
       <article class="card card--pad card--game reveal">
-        <div class="card__media toki-game" id="tokiGame">
-          <img class="toki-game__bg" src="assets/img/toki-25.jpg" alt="토키랜드 그림맞추기 — 우주 장면" loading="lazy">
+        <div class="toki-stage">
+          <div class="card__media toki-game" id="tokiGame">
+            <img class="toki-game__bg" src="assets/img/toki-25.jpg" alt="토키랜드 그림맞추기 — 우주 장면" loading="lazy">
 
-          <!-- 검은 실루엣 위에 얹은 드롭 영역 -->
-          <div class="toki-slot" data-key="car"   style="--x:11.9%;--y:83.2%;--w:11.4%;--h:10.6%"></div>
-          <div class="toki-slot" data-key="space" style="--x:37.7%;--y:83.2%;--w:12.0%;--h:8.8%"></div>
-          <div class="toki-slot" data-key="astro" style="--x:62.5%;--y:82.8%;--w:6.0%;--h:12.2%"></div>
-          <div class="toki-slot" data-key="earth" style="--x:88.0%;--y:83.0%;--w:9.4%;--h:10.9%"></div>
+            <!-- 검은 실루엣 위에 얹은 드롭 영역 -->
+            <div class="toki-slot" data-key="car"   style="--x:12.1%;--y:84.1%;--w:12.2%;--h:9.6%"></div>
+            <div class="toki-slot" data-key="space" style="--x:38.3%;--y:83.9%;--w:12.5%;--h:10.0%"></div>
+            <div class="toki-slot" data-key="astro" style="--x:62.9%;--y:84.1%;--w:6.7%;--h:12.8%"></div>
+            <div class="toki-slot" data-key="earth" style="--x:88.3%;--y:84.1%;--w:10.0%;--h:12.8%"></div>
 
-          <p class="toki-cheer" aria-live="polite"><strong>잘했어요!</strong><span>네 개 다 맞췄어요</span></p>
-          <button class="toki-replay" type="button">다시 하기</button>
-        </div>
+            <p class="toki-cheer" aria-live="polite"><strong>잘했어요!</strong><span>네 개 다 맞췄어요</span></p>
+            <button class="toki-replay" type="button">다시 하기</button>
+          </div>
 
-        <!-- 드래그할 조각 -->
-        <div class="toki-pieces">
-          <img class="toki-piece" data-key="car"   src="assets/img/game/car.png"   alt="자동차 조각" draggable="false" style="--l:-9%;--t:26%;--w:88px">
-          <img class="toki-piece" data-key="space" src="assets/img/game/space.png" alt="우주 조각"   draggable="false" style="--l:-10%;--t:64%;--w:86px">
-          <img class="toki-piece" data-key="astro" src="assets/img/game/astro.png" alt="우주인 조각" draggable="false" style="--l:108%;--t:26%;--w:56px">
-          <img class="toki-piece" data-key="earth" src="assets/img/game/earth.png" alt="지구 조각"   draggable="false" style="--l:108%;--t:64%;--w:76px">
+          <!-- 오른쪽 조각 트레이 -->
+          <div class="toki-pieces">
+            <img class="toki-piece" data-key="car"   src="assets/img/game/car.png"   alt="자동차 조각" draggable="false" style="--w:82px">
+            <img class="toki-piece" data-key="space" src="assets/img/game/space.png" alt="우주 조각"   draggable="false" style="--w:80px">
+            <img class="toki-piece" data-key="astro" src="assets/img/game/astro.png" alt="우주인 조각" draggable="false" style="--w:52px">
+            <img class="toki-piece" data-key="earth" src="assets/img/game/earth.png" alt="지구 조각"   draggable="false" style="--w:70px">
+          </div>
         </div>
 
         <div class="card__info">

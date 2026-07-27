@@ -159,22 +159,42 @@
     const replayBtn = gameCard.querySelector('.toki-replay');
     let solved = 0;
 
-    // 포인터 위치에 있는 슬롯 찾기 (실루엣이 작으므로 여유를 둔다)
-    const PAD = 34;
-    function slotAt(x, y) {
-      return slots.find(s => {
-        if (s.classList.contains('is-filled')) return false;
+    const board = gameCard.querySelector('.toki-game');
+
+    // 조각 중심에서 가장 가까운 빈칸을 고른다. 칸이 작아 정확히 겹칠 필요는 없게 한다
+    function nearestSlot(cx, cy) {
+      const reach = board.getBoundingClientRect().width * 0.2;
+      let best = null, bestD = Infinity;
+      slots.forEach(s => {
+        if (s.classList.contains('is-filled')) return;
         const r = s.getBoundingClientRect();
-        return x >= r.left - PAD && x <= r.right + PAD &&
-               y >= r.top - PAD && y <= r.bottom + PAD;
-      }) || null;
+        const d = Math.hypot(cx - (r.left + r.width / 2), cy - (r.top + r.height / 2));
+        if (d < bestD) { bestD = d; best = s; }
+      });
+      return bestD <= reach ? best : null;
     }
 
     function clearDragStyles(piece) {
+      piece.style.transition = '';
       piece.style.position = '';
       piece.style.left = '';
       piece.style.top = '';
       piece.style.width = '';
+    }
+
+    // 맞는 칸으로 미끄러져 들어가는 연출
+    function snapInto(piece, slot, done) {
+      const r = slot.getBoundingClientRect();
+      const ratio = (piece.naturalWidth / piece.naturalHeight) ||
+                    (piece.offsetWidth / piece.offsetHeight) || 1;
+      const w = ratio > r.width / r.height ? r.width : r.height * ratio;
+      const h = w / ratio;
+      piece.style.transition =
+        'left .26s cubic-bezier(.33,1.2,.5,1),top .26s cubic-bezier(.33,1.2,.5,1),width .26s ease';
+      piece.style.left = (r.left + (r.width - w) / 2) + 'px';
+      piece.style.top = (r.top + (r.height - h) / 2) + 'px';
+      piece.style.width = w + 'px';
+      setTimeout(done, 270);
     }
 
     pieces.forEach(piece => {
@@ -188,16 +208,23 @@
 
         piece.classList.remove('is-returning');
         piece.classList.add('is-dragging');
+        gameCard.classList.add('is-playing');   // 드래그하는 동안만 빈칸 안내선을 띄운다
         piece.style.position = 'fixed';
         piece.style.width = rect.width + 'px';
         piece.style.left = rect.left + 'px';
         piece.style.top = rect.top + 'px';
         piece.setPointerCapture(e.pointerId);
 
+        // 조각 중심 좌표 (포인터가 아니라 조각 자체를 기준으로 판정한다)
+        const centerOf = ev => {
+          const r = piece.getBoundingClientRect();
+          return [ev.clientX - grabX + r.width / 2, ev.clientY - grabY + r.height / 2];
+        };
+
         const onMove = ev => {
           piece.style.left = (ev.clientX - grabX) + 'px';
           piece.style.top = (ev.clientY - grabY) + 'px';
-          const hit = slotAt(ev.clientX, ev.clientY);
+          const hit = nearestSlot(...centerOf(ev));
           slots.forEach(s => s.classList.toggle('is-over', s === hit));
         };
 
@@ -205,20 +232,24 @@
           piece.removeEventListener('pointermove', onMove);
           piece.removeEventListener('pointerup', onUp);
           piece.removeEventListener('pointercancel', onUp);
-          piece.classList.remove('is-dragging');
           slots.forEach(s => s.classList.remove('is-over'));
+          gameCard.classList.remove('is-playing');
 
-          const hit = slotAt(ev.clientX, ev.clientY);
-          clearDragStyles(piece);
+          const hit = nearestSlot(...centerOf(ev));
 
           if (hit && hit.dataset.key === piece.dataset.key) {
-            hit.classList.add('is-filled');
-            piece.classList.add('is-placed');
-            solved++;
-            if (solved === slots.length) {
-              setTimeout(() => gameCard.classList.add('is-cleared'), 380);
-            }
+            snapInto(piece, hit, () => {
+              piece.classList.remove('is-dragging');
+              clearDragStyles(piece);
+              hit.classList.add('is-filled');
+              piece.classList.add('is-placed');
+              if (++solved === slots.length) {
+                setTimeout(() => gameCard.classList.add('is-cleared'), 320);
+              }
+            });
           } else {
+            piece.classList.remove('is-dragging');
+            clearDragStyles(piece);
             piece.classList.add('is-returning');
             setTimeout(() => piece.classList.remove('is-returning'), 420);
           }

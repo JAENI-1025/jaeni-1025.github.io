@@ -177,8 +177,13 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .card--pad .card__media{aspect-ratio:4/3}
 
 /* ── 토키랜드 미니게임 ── */
+.card--game{max-width:70%}
 .card--game .card__media{overflow:hidden}
 .card--game:hover .card__media img{transform:none}   /* 플레이 중 배경 확대 방지 */
+
+/* 왼쪽 게임판 + 오른쪽 조각 트레이 */
+.toki-stage{display:flex;align-items:stretch;gap:clamp(14px,1.8vw,26px)}
+.toki-stage .card__media{flex:1 1 auto;min-width:0}
 .toki-game{position:relative}
 .toki-game__bg{width:100%;height:100%;object-fit:cover;display:block}
 
@@ -190,32 +195,36 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
   z-index:2;
 }
 .toki-slot::before{                     /* 드롭 가이드 */
-  content:'';position:absolute;inset:-22% -18%;
-  border-radius:14px;border:2px dashed transparent;
+  content:'';position:absolute;inset:-24% -20%;
+  border-radius:12px;border:2px dashed transparent;
   transition:border-color .18s,background-color .18s;
 }
-.toki-slot.is-over::before{border-color:var(--accent);background-color:rgba(47,69,255,.14)}
+.card--game.is-playing .toki-slot::before{border-color:rgba(47,69,255,.42)}
+.card--game.is-playing .toki-slot.is-filled::before{border-color:transparent}
+.toki-slot.is-over::before{border-color:var(--accent);background-color:rgba(47,69,255,.16)}
 .toki-slot::after{                      /* 채워진 컬러 그림 */
   content:'';position:absolute;inset:0;
   background:var(--art) center/contain no-repeat;
-  opacity:0;transform:scale(.35);
-  transition:opacity .2s,transform .5s cubic-bezier(.34,1.56,.64,1);
+  opacity:0;transition:opacity .16s;
 }
-.toki-slot.is-filled::after{opacity:1;transform:scale(1)}
+.toki-slot.is-filled::after{opacity:1}
 .toki-slot[data-key="car"]  {--art:url(../assets/img/game/car.png)}
 .toki-slot[data-key="space"]{--art:url(../assets/img/game/space.png)}
 .toki-slot[data-key="astro"]{--art:url(../assets/img/game/astro.png)}
 .toki-slot[data-key="earth"]{--art:url(../assets/img/game/earth.png)}
 
-/* 끌어다 놓는 조각 */
-.toki-pieces{position:absolute;inset:0;z-index:5;pointer-events:none}
-.toki-piece{pointer-events:auto}
+/* 오른쪽 조각 트레이 */
+.toki-pieces{
+  flex:0 0 clamp(94px,15%,148px);
+  display:flex;flex-direction:column;align-items:center;justify-content:space-around;
+  gap:8px;padding:14px 8px;
+  border:1px dashed var(--line);border-radius:var(--radius);
+  background:#fff;
+}
 .toki-piece{
-  position:absolute;left:var(--l);top:var(--t);
-  width:var(--w);height:auto;
-  transform:translate(-50%,-50%);
+  width:var(--w);max-width:100%;height:auto;
   cursor:grab;touch-action:none;-webkit-user-drag:none;user-select:none;
-  filter:drop-shadow(0 8px 16px rgba(20,20,15,.20));
+  filter:drop-shadow(0 8px 16px rgba(20,20,15,.18));
   animation:tokiBob 3.6s ease-in-out infinite;
   animation-delay:var(--d,0s);
 }
@@ -223,8 +232,8 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .toki-piece:nth-child(3){--d:1.8s}
 .toki-piece:nth-child(4){--d:2.6s}
 @keyframes tokiBob{
-  0%,100%{transform:translate(-50%,-50%)}
-  50%{transform:translate(-50%,calc(-50% - 7px))}
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
 }
 .toki-piece.is-dragging{
   animation:none;transform:none;cursor:grabbing;z-index:9999;
@@ -233,9 +242,9 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .toki-piece.is-placed{opacity:0;pointer-events:none;animation:none}
 .toki-piece.is-returning{animation:tokiShake .4s ease}
 @keyframes tokiShake{
-  0%,100%{transform:translate(-50%,-50%) rotate(0)}
-  25%{transform:translate(-50%,-50%) rotate(-9deg)}
-  75%{transform:translate(-50%,-50%) rotate(9deg)}
+  0%,100%{transform:rotate(0)}
+  25%{transform:rotate(-9deg)}
+  75%{transform:rotate(9deg)}
 }
 
 /* 완료 축하 */
@@ -490,18 +499,14 @@ body.modal-open{overflow:hidden}
 @media (max-width:720px){
   .work__grid{grid-template-columns:1fr}
   .card,.card--half,.card--pad{grid-column:1/-1}
-  .card--pad{max-width:100%}
+  .card--pad,.card--game{max-width:100%}
   .card--half .card__media{aspect-ratio:16/9}
   .card--pad .card__media{aspect-ratio:4/3}
-  /* 조각은 카드 밖 대신 아래 한 줄로 */
-  .toki-pieces{position:static;display:flex;justify-content:center;align-items:flex-end;
-    gap:16px;margin-top:18px;min-height:76px}
-  .toki-piece{position:static;transform:none;animation:none;width:calc(var(--w) * .78)}
-  .toki-piece.is-returning{animation:tokiShakeFlat .4s ease}
-  @keyframes tokiShakeFlat{
-    0%,100%{transform:rotate(0)}25%{transform:rotate(-9deg)}75%{transform:rotate(9deg)}
-  }
-  .toki-piece.is-placed{display:none}
+  /* 좁은 화면에서는 트레이를 게임판 아래 한 줄로 */
+  .toki-stage{flex-direction:column;gap:12px}
+  .toki-pieces{flex:none;flex-direction:row;justify-content:space-around;align-items:flex-end;
+    padding:12px 10px;min-height:78px}
+  .toki-piece{animation:none;width:calc(var(--w) * .82)}
   .tools__cols{grid-template-columns:1fr}
   .br-desktop{display:none}
   .hero__hint{display:none}
@@ -514,7 +519,4 @@ body.modal-open{overflow:hidden}
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none}
-  /* 애니메이션이 꺼져도 조각 위치는 유지되어야 게임이 가능하다 */
-  .toki-piece{transform:translate(-50%,-50%)}
-  .toki-piece.is-dragging{transform:none}
 }
