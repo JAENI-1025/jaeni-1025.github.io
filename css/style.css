@@ -178,7 +178,8 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .card--pad .card__media{aspect-ratio:4/3}
 
 /* ── 토키랜드 미니게임 ── */
-.card--game{max-width:57%}
+/* 게임 카드는 위아래 간격을 카드 사이 기본 간격의 1.5배로 벌린다 */
+.card--game{max-width:57%;margin-block:calc(clamp(20px,3vw,36px) * .5)}
 .card--game .card__media{overflow:hidden}
 
 /* 왼쪽 게임판 + 오른쪽 조각 트레이 */
@@ -224,9 +225,10 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 
 /* 오른쪽 물결 트레이 */
 .toki-pieces{
-  position:relative;flex:0 0 clamp(88px,8vw,120px);
+  /* 물결이 잘록해지는 지점 폭이 트레이의 73%라, 조각 크기는 거기에 맞춰 정한다 */
+  position:relative;flex:0 0 clamp(118px,8.5vw,136px);
   display:flex;flex-direction:column;align-items:center;justify-content:space-around;
-  gap:8px;padding:22px 14px;
+  gap:8px;padding:22px 12px;
 }
 .toki-tray{
   position:absolute;inset:0;width:100%;height:100%;z-index:0;
@@ -555,6 +557,8 @@ body.modal-open{overflow:hidden}
   .toki-tray--v{display:none}
   .toki-tray--h{display:block}
   .toki-piece{animation:none;width:calc(var(--w) * .92)}
+  /* 가로로 누운 트레이는 높이가 제약이라 우주인은 세로 트레이만큼 키우지 않는다 */
+  .toki-piece[data-key="astro"]{width:42px}
   .toki-miss{font-size:11.5px;padding:6px 12px}
   .tools__cols{grid-template-columns:1fr}
   .br-desktop{display:none}
