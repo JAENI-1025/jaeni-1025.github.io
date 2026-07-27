@@ -310,8 +310,14 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 }
 .card--game.is-cleared .card__play{display:none}
 .card__more{
+  position:relative;
   border:none;background:none;color:var(--accent);font-family:var(--font-ko);
   font-size:12.5px;margin-left:10px;border-bottom:1px solid currentColor;padding:0 1px;
+}
+/* 글자 크기는 그대로 두고, 손가락으로 누를 자리만 44px 높이로 넓힌다.
+   위쪽 퍼즐 트레이와는 43px 떨어져 있어 조각 드래그를 가로채지 않는다 */
+.card__more::after{
+  content:'';position:absolute;left:-10px;right:-10px;top:-16px;bottom:-16px;
 }
 
 .card__media{
