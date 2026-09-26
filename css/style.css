@@ -443,21 +443,31 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .timeline__body p{font-size:14.5px;color:#4c4c44;max-width:640px}
 .timeline__body p + p{margin-top:12px}
 .timeline__body strong{color:var(--ink);font-weight:700}
-/* 기업 AX 교육 — 역할별로 과정명만 나열하고 시간은 오른쪽에 붙인다 */
+/* 기업 AX 교육 — 과정명만 나열하고, 맡은 역할은 이름 옆에 굵게, 시간은 오른쪽에 붙인다 */
 .timeline__body .ax__role{
   font-size:12px;font-weight:500;letter-spacing:1px;color:var(--accent);
-  margin-top:16px;
 }
-.timeline__body h3 + .ax__role{margin-top:0}
 .ax__list{list-style:none;max-width:640px;margin-top:4px}
 .ax__list li{
   display:flex;justify-content:space-between;align-items:baseline;gap:16px;
   font-size:14.5px;color:#4c4c44;padding:5px 0;
   border-bottom:1px solid rgba(0,0,0,.06);
 }
-.ax__list li span{
+.ax__list b{color:var(--ink);font-weight:700;white-space:nowrap}
+.ax__list .ax__hours{
   flex:none;font-family:var(--font-en);font-size:13px;color:var(--ink);font-weight:500;
 }
+/* 예정 강의: 평소엔 배경색과 같아 보이지 않다가, 올리면 흐리게 드러난다 */
+.ax__list .ax__upcoming,
+.ax__list .ax__upcoming b,
+.ax__list .ax__upcoming .ax__hours{color:var(--bg);transition:color .5s}
+.ax__list .ax__upcoming{border-bottom-color:transparent;outline:none;cursor:default}
+.ax__list .ax__upcoming:hover,
+.ax__list .ax__upcoming:focus,
+.ax__list .ax__upcoming:hover b,
+.ax__list .ax__upcoming:focus b,
+.ax__list .ax__upcoming:hover .ax__hours,
+.ax__list .ax__upcoming:focus .ax__hours{color:var(--gray)}
 .timeline__body .ax__total{margin-top:14px}
 .timeline__tag{
   display:inline-block;margin-top:12px;padding:5px 14px;border-radius:999px;
