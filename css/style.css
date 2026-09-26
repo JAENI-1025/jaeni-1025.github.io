@@ -457,18 +457,15 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 }
 .ax__list b{white-space:nowrap}
 .ax__list .ax__hours{flex:none}
-.ax__list .ax__lead{font-weight:500}
-/* 예정 강의: 평소엔 배경색과 같아 보이지 않다가, 올리면 흐리게 드러난다 */
-.ax__list .ax__upcoming,
-.ax__list .ax__upcoming b,
-.ax__list .ax__upcoming .ax__hours{color:var(--bg);transition:color .5s}
-.ax__list .ax__upcoming{border-bottom-color:transparent;outline:none;cursor:default}
+/* 강사로 맡은 과정 — 아래 목록과 한 박자 떨어뜨린다 */
+.ax__list .ax__lead{font-weight:500;margin-bottom:22px}
+/* 예정 강의: 평소엔 보이지 않다가, 올리거나 탭하면 희끗하게(35%) 드러난다 */
+.ax__list .ax__upcoming{
+  opacity:0;transition:opacity .5s;
+  border-bottom-color:transparent;outline:none;cursor:default;
+}
 .ax__list .ax__upcoming:hover,
-.ax__list .ax__upcoming:focus,
-.ax__list .ax__upcoming:hover b,
-.ax__list .ax__upcoming:focus b,
-.ax__list .ax__upcoming:hover .ax__hours,
-.ax__list .ax__upcoming:focus .ax__hours{color:var(--gray)}
+.ax__list .ax__upcoming:focus{opacity:.35}
 .timeline__body .ax__total{margin-top:14px}
 .timeline__tag{
   display:inline-block;margin-top:12px;padding:5px 14px;border-radius:999px;
