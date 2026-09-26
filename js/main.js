@@ -399,20 +399,19 @@
     }));
   }
 
-  /* ───── 이메일 복사 ───── */
-  const emailBtn = document.getElementById('emailBtn');
-  if (emailBtn) {
-    emailBtn.addEventListener('click', async () => {
-      const email = emailBtn.dataset.email;
+  /* ───── 이메일·전화번호 복사 ───── */
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(email);
-        emailBtn.querySelector('.contact__copied').textContent = '복사됐어요 ✓';
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        btn.querySelector('.contact__copied').textContent = '복사됐어요 ✓';
       } catch {
-        location.href = 'mailto:' + email;
+        // 복사가 막힌 환경에선 메일 앱·전화 앱으로 넘긴다
+        location.href = btn.dataset.fallback;
         return;
       }
-      emailBtn.classList.add('is-copied');
-      setTimeout(() => emailBtn.classList.remove('is-copied'), 1800);
+      btn.classList.add('is-copied');
+      setTimeout(() => btn.classList.remove('is-copied'), 1800);
     });
-  }
+  });
 })();

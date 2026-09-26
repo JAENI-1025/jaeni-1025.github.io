@@ -443,6 +443,22 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
 .timeline__body p{font-size:14.5px;color:#4c4c44;max-width:640px}
 .timeline__body p + p{margin-top:12px}
 .timeline__body strong{color:var(--ink);font-weight:700}
+/* 기업 AX 교육 — 역할별로 과정명만 나열하고 시간은 오른쪽에 붙인다 */
+.timeline__body .ax__role{
+  font-size:12px;font-weight:500;letter-spacing:1px;color:var(--accent);
+  margin-top:16px;
+}
+.timeline__body h3 + .ax__role{margin-top:0}
+.ax__list{list-style:none;max-width:640px;margin-top:4px}
+.ax__list li{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  font-size:14.5px;color:#4c4c44;padding:5px 0;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.ax__list li span{
+  flex:none;font-family:var(--font-en);font-size:13px;color:var(--ink);font-weight:500;
+}
+.timeline__body .ax__total{margin-top:14px}
 .timeline__tag{
   display:inline-block;margin-top:12px;padding:5px 14px;border-radius:999px;
   font-size:11.5px;letter-spacing:1px;
@@ -504,6 +520,10 @@ section{padding:clamp(70px,12vh,140px) var(--pad)}
   margin-bottom:clamp(28px,5vh,48px);
 }
 .contact__period{color:var(--accent)}
+.contact__links{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:clamp(14px,2.5vw,24px) clamp(28px,5vw,56px);
+}
 .contact__email{
   font-family:var(--font-en);font-weight:500;
   font-size:clamp(17px,3vw,30px);letter-spacing:-.5px;
